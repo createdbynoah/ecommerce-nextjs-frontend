@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { client, getAssets } from '../lib/client';
+import { getAssets } from '../lib/client';
 
 import {
   Product,
