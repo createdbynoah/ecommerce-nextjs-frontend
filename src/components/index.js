@@ -7,3 +7,7 @@ export { default as Layout } from './Layout';
 export { default as Navbar } from './Navbar';
 export { default as Cart } from './Cart';
 export { default as ImageGallery } from './ImageGallery';
+export { default as ProductQuantity } from './ProductQuantity';
+export { default as ProductButtons } from './ProductButtons';
+export { default as ProductDetails } from './ProductDetails';
+export { default as ProductMarquee } from './ProductMarquee';
