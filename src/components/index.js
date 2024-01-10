@@ -7,6 +7,7 @@ export { default as Cart } from './Cart/Cart';
 export { default as CartHeader } from './Cart/CartHeader';
 export { default as CartFooter } from './Cart/CartFooter';
 export { default as CartItems } from './Cart/CartItems';
+export { default as CartItem } from './Cart/CartItem';
 export { default as EmptyCart } from './Cart/EmptyCart';
 export { default as ImageGallery } from './Product/ImageGallery';
 export { default as ProductQuantity } from './Product/ProductQuantity';
