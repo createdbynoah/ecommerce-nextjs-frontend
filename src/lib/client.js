@@ -18,7 +18,7 @@ const urlFor = (source) => builder.image(source);
 const getAssets = async () => {
   console.log('here');
   const query = '*[_type == "product"]';
-  const query2 = '*[_type == "banner"]';
+  const query2 = '*[_type == "banner"]{ ..., product-> }';
   const query3 = '*[_type == "categories"]';
 
   try {
