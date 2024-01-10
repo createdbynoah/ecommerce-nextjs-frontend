@@ -48,4 +48,38 @@ const getAssets = async () => {
   }
 };
 
-export { client, urlFor, getAssets };
+const getAllProducts = async () => {
+  const query = '*[_type == "product"]';
+  try {
+    const initialProducts = await client.fetch(query);
+    const products = initialProducts.map((product) => {
+      return {
+        ...product,
+        imageUrls: product.image?.map((image) => {
+          return urlFor(image).toString();
+        }),
+      };
+    });
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getProduct = async (slug) => {
+  const query = `*[_type == "product" && slug.current == "${slug}"][0]`;
+  try {
+    const initialProduct = await client.fetch(query);
+    const product = {
+      ...initialProduct,
+      imageUrls: initialProduct.image?.map((image) => {
+        return urlFor(image).toString();
+      }),
+    };
+    return product;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { client, urlFor, getAssets, getProduct, getAllProducts };
