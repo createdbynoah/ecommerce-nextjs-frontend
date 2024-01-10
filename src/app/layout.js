@@ -1,9 +1,12 @@
 import { Inter } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 import Head from 'next/head';
 import './globals.css';
 import { Footer, Navbar } from '../components';
 
 const inter = Inter({ subsets: ['latin'] });
+
+import { StateContext } from '@/context/StateContext';
 
 export const metadata = {
   title: 'BuyMyGear.',
@@ -22,13 +25,16 @@ export default function RootLayout({ children }) {
       </Head>
 
       <body className={inter.className}>
-        <header>
-          <Navbar />
-        </header>
-        <main className="main-container">{children}</main>
-        <footer>
-          <Footer />
-        </footer>
+        <StateContext>
+          <header>
+            <Navbar />
+          </header>
+          <Toaster />
+          <main className="main-container">{children}</main>
+          <footer>
+            <Footer />
+          </footer>
+        </StateContext>
       </body>
     </html>
   );
