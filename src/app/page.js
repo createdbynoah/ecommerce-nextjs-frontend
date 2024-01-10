@@ -5,6 +5,7 @@ import { client, getAssets } from '../lib/client';
 
 import {
   Product,
+  Products,
   Footer,
   FooterBanner,
   HeroBanner,
@@ -13,24 +14,23 @@ import {
 
 const Home = async () => {
   const { products, categories, banners } = await getAssets();
-  console.log('products', products);
-  console.log('categories', categories);
-  console.log('banners', banners);
 
   return (
     <>
       <Navbar />
-      <HeroBanner />
-      {console.log('banners', banners)}
+      <HeroBanner heroBanner={banners.length && banners[0]} />
       <div className="products-heading">
         <h2>Best Selling Products</h2>
         <p>Speakers of many variations</p>
       </div>
       <div className="products-container">
-        {products?.map((product) => {
-          return product.name;
-        })}
+        {products.map((product) => (
+          <Product key={product._id} product={product} />
+        ))}
       </div>
+      {/* <div className="products-container">
+        <Products />
+      </div> */}
       <FooterBanner />
     </>
   );
