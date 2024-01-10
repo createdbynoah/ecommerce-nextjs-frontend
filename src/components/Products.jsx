@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 
-import { client, urlFor } from '../../lib/client';
+import { client, urlFor } from '../lib/client';
 import Product from './Product';
 
 const Products = () => {
