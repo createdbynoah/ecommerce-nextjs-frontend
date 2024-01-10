@@ -9,7 +9,7 @@ import {
   Footer,
   FooterBanner,
   HeroBanner,
-} from './components';
+} from '../components';
 
 const Home = async () => {
   const { products, categories, banners } = await getAssets();
