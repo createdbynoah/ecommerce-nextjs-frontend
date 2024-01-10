@@ -17,31 +17,11 @@ const urlFor = (source) => builder.image(source);
 
 const getAssets = async () => {
   console.log('here');
-  const query = '*[_type == "product"]';
-  const query2 = '*[_type == "banner"]{ ..., product-> }';
-  const query3 = '*[_type == "categories"]';
 
   try {
-    let products = await client.fetch(query);
-    let banners = await client.fetch(query2);
-    const categories = await client.fetch(query3);
-    banners = banners.map((banner) => {
-      return {
-        ...banner,
-        imageUrl: urlFor(banner.image).toString(),
-      };
-    });
-    products = products.map((product) => {
-      return {
-        ...product,
-        imageUrls: product.image?.map((image) => {
-          return urlFor(image).toString();
-        }),
-      };
-    });
-    console.log('banners', banners);
-    console.log('categories', categories);
-    console.log('products', products);
+    const products = await getAllProducts();
+    const categories = await getCategories();
+    const banners = await getBanners();
     return { products, categories, banners };
   } catch (error) {
     console.log(error);
@@ -56,7 +36,7 @@ const getAllProducts = async () => {
       return {
         ...product,
         imageUrls: product.image?.map((image) => {
-          return urlFor(image).toString();
+          return { url: urlFor(image).toString(), key: image._key };
         }),
       };
     });
@@ -73,10 +53,39 @@ const getProduct = async (slug) => {
     const product = {
       ...initialProduct,
       imageUrls: initialProduct.image?.map((image) => {
-        return urlFor(image).toString();
+        return { url: urlFor(image).toString(), key: image._key };
       }),
     };
     return product;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getBanners = async () => {
+  const query = '*[_type == "banner"]{ ..., product-> }';
+  try {
+    const initialBanners = await client.fetch(query);
+    const banners = initialBanners.map((banner) => {
+      return {
+        ...banner,
+        imageUrls: {
+          url: urlFor(banner.image).toString(),
+          key: banner.image._key,
+        },
+      };
+    });
+    return banners;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getCategories = async () => {
+  const query = '*[_type == "categories"]';
+  try {
+    const categories = await client.fetch(query);
+    return categories;
   } catch (error) {
     console.log(error);
   }
