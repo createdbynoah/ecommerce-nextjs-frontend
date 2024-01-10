@@ -7,7 +7,7 @@ import {
 } from 'react-icons/ai';
 
 import { getProduct, getAllProducts } from '../../../lib/client';
-import { Product } from '@/components';
+import { ImageGallery, Product } from '@/components';
 
 const ProductDetails = async ({ params }) => {
   const { name, price, description, imageUrls } = await getProduct(params.slug);
@@ -16,15 +16,7 @@ const ProductDetails = async ({ params }) => {
   return (
     <div>
       <div className="product-detail-container">
-        <div className="image-container">
-          <img src={imageUrls.length !== 0 && imageUrls[0]} alt={name} />
-        </div>
-        {/* <div className="small-images-container">
-          {imageUrls.map((imageUrl, index) => (
-            <img src={imageUrl} className="" onMouseEnter="" />
-          ))}
-
-        </div> */}
+        <ImageGallery images={imageUrls} />
         <div className="product-detail-desc">
           <h1>{name}</h1>
           <div className="reviews">
