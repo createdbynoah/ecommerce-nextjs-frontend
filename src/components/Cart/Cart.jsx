@@ -8,8 +8,14 @@ import { CartFooter, CartHeader, CartItems, EmptyCart } from '@/components';
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalItems, totalPrice, cartItems, setShowCart, toggleCartItemQty } =
-    useStateContext();
+  const {
+    totalItems,
+    totalPrice,
+    cartItems,
+    setShowCart,
+    toggleCartItemQty,
+    onRemoveFromCart,
+  } = useStateContext();
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -21,9 +27,15 @@ const Cart = () => {
         {cartItems.length === 0 && (
           <EmptyCart hideCart={() => setShowCart(false)} />
         )}
-        <CartItems changeItemQty={toggleCartItemQty} items={cartItems} />
-        {cartItems.length && (
-          <CartFooter totalPrice={totalPrice} cartRef={cartRef} />
+        {cartItems.length !== 0 && (
+          <>
+            <CartItems
+              changeItemQty={toggleCartItemQty}
+              items={cartItems}
+              removeItemFromCart={onRemoveFromCart}
+            />
+            <CartFooter totalPrice={totalPrice} cartRef={cartRef} />
+          </>
         )}
       </div>
     </div>
