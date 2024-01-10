@@ -1,98 +1,29 @@
 'use client';
 import React, { useRef } from 'react';
-import Link from 'next/link';
 
-import {
-  AiOutlineMinus,
-  AiOutlinePlus,
-  AiOutlineLeft,
-  AiOutlineShopping,
-} from 'react-icons/ai';
-import { TiDeleteOutline } from 'react-icons/ti';
 import { toast } from 'react-hot-toast';
 
 import { useStateContext } from '@/context/StateContext';
+import { CartFooter, CartHeader, CartItems, EmptyCart } from '@/components';
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalItems, totalPrice, cartItems, setShowCart } = useStateContext();
+  const { totalItems, totalPrice, cartItems, setShowCart, toggleCartItemQty } =
+    useStateContext();
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
       <div className="cart-container">
-        <button
-          type="button"
-          className="cart-heading"
-          onClick={() => setShowCart(false)}
-        >
-          <AiOutlineLeft />
-          <span className="heading">Your Cart</span>
-          <span className="cart-num-items">({totalItems})</span>
-        </button>
+        <CartHeader
+          hideCart={() => setShowCart(false)}
+          totalItems={totalItems}
+        />
         {cartItems.length === 0 && (
-          <div className="empty-cart">
-            <AiOutlineShopping size={150} />
-            <h3>Your shopping cart is empty.</h3>
-            <Link href="/">
-              <button
-                type="button"
-                className="btn"
-                onClick={() => setShowCart(false)}
-              >
-                Continue Shopping
-              </button>
-            </Link>
-          </div>
+          <EmptyCart hideCart={() => setShowCart(false)} />
         )}
-        <div className="product-container">
-          {console.log('cartitems', cartItems)}
-          {cartItems.length &&
-            cartItems.map((item, index) => (
-              <div className="product" key={item._id}>
-                <img
-                  src={item?.imageUrls[0].url}
-                  alt=""
-                  className="cart-product-image"
-                />
-                <div className="item-desc">
-                  <div className="flex top">
-                    <h5>{item.name}</h5>
-                    <h4>${item.price}</h4>
-                  </div>
-                  <div className="flex bottom">
-                    <div>
-                      <p className="quantity-desc">
-                        <span className="minus" onClick="">
-                          <AiOutlineMinus />
-                        </span>
-                        <span className="num" onClick="">
-                          1
-                        </span>
-                        <span className="plus" onClick="">
-                          <AiOutlinePlus />
-                        </span>
-                      </p>
-                    </div>
-                    <button type="button" className="remove-item" onClick="">
-                      <TiDeleteOutline />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
+        <CartItems changeItemQty={toggleCartItemQty} items={cartItems} />
         {cartItems.length && (
-          <div className="cart-bottom">
-            <div className="total">
-              <h3>Subtotal:</h3>
-              <h3>${totalPrice}</h3>
-            </div>
-            <div className="btn-container">
-              <button type="button" className="btn" onclick="">
-                Pay with Stripe
-              </button>
-            </div>
-          </div>
+          <CartFooter totalPrice={totalPrice} cartRef={cartRef} />
         )}
       </div>
     </div>
