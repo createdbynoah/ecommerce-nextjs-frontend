@@ -9,7 +9,6 @@ import {
   Footer,
   FooterBanner,
   HeroBanner,
-  Navbar,
 } from './components';
 
 const Home = async () => {
@@ -17,7 +16,6 @@ const Home = async () => {
 
   return (
     <>
-      <Navbar />
       <HeroBanner heroBanner={banners.length && banners[0]} />
       <div className="products-heading">
         <h2>Best Selling Products</h2>
@@ -31,7 +29,7 @@ const Home = async () => {
       {/* <div className="products-container">
         <Products />
       </div> */}
-      <FooterBanner />
+      <FooterBanner footerBanner={banners && banners[0]} />
     </>
   );
 };
