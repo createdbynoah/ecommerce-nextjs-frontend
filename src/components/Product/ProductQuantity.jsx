@@ -4,7 +4,7 @@ import React from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { useStateContext } from '@/context/StateContext';
 
-const ProductQuantity = ({ product, increaseQty, decreaseQty, quantity }) => {
+const ProductQuantity = ({ increaseQty, decreaseQty, quantity }) => {
   return (
     <div className="quantity">
       <h3>Quantity:</h3>
