@@ -16,14 +16,32 @@ const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
 const getAssets = async () => {
+  console.log('here');
   const query = '*[_type == "product"]';
-  const query2 = '*[_type == "hero"]';
+  const query2 = '*[_type == "banner"]';
   const query3 = '*[_type == "categories"]';
 
   try {
-    const products = await client.fetch(query);
-    const banners = await client.fetch(query2);
+    let products = await client.fetch(query);
+    let banners = await client.fetch(query2);
     const categories = await client.fetch(query3);
+    banners = banners.map((banner) => {
+      return {
+        ...banner,
+        imageUrl: urlFor(banner.image).toString(),
+      };
+    });
+    products = products.map((product) => {
+      return {
+        ...product,
+        imageUrls: product.image?.map((image) => {
+          return urlFor(image).toString();
+        }),
+      };
+    });
+    console.log('banners', banners);
+    console.log('categories', categories);
+    console.log('products', products);
     return { products, categories, banners };
   } catch (error) {
     console.log(error);
