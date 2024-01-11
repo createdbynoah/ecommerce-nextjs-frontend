@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartFooter = ({ totalPrice, cartRef }) => {
+const CartFooter = ({ totalPrice, cartRef, handleCheckout }) => {
   return (
     <div className="cart-bottom">
       <div className="total">
@@ -8,7 +8,7 @@ const CartFooter = ({ totalPrice, cartRef }) => {
         <h3>${totalPrice}</h3>
       </div>
       <div className="btn-container">
-        <button type="button" className="btn" onclick="">
+        <button type="button" className="btn" onClick={handleCheckout}>
           Pay with Stripe
         </button>
       </div>
