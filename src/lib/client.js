@@ -29,13 +29,13 @@ const getAssets = async () => {
 };
 
 const getAllProducts = async () => {
-  const query = '*[_type == "product"]';
+  const query = '*[_type == "product" && published == true]';
   try {
     const initialProducts = await client.fetch(query);
     const products = initialProducts.map((product) => {
       return {
         ...product,
-        imageUrls: product.image?.map((image) => {
+        imageUrls: product.images?.map((image) => {
           return { url: urlFor(image).toString(), key: image._key };
         }),
       };
@@ -47,12 +47,12 @@ const getAllProducts = async () => {
 };
 
 const getProduct = async (slug) => {
-  const query = `*[_type == "product" && slug.current == "${slug}"][0]`;
+  const query = `*[_type == "product" && published == true && slug.current == "${slug}"][0]`;
   try {
     const initialProduct = await client.fetch(query);
     const product = {
       ...initialProduct,
-      imageUrls: initialProduct.image?.map((image) => {
+      imageUrls: initialProduct.images?.map((image) => {
         return { url: urlFor(image).toString(), key: image._key };
       }),
     };
