@@ -16,6 +16,7 @@ export const POST = async (req) => {
       submit_type: 'pay',
       mode: 'payment',
       payment_method_types: ['card'],
+      allow_promotion_codes: true,
       billing_address_collection: 'auto',
       shipping_address_collection: {
         allowed_countries: ['US'],
@@ -28,6 +29,18 @@ export const POST = async (req) => {
           shipping_rate: 'shr_1OXB5zEI54h92sklL6pMD9E5',
         },
       ],
+      metadata: {
+        products: JSON.stringify(
+          cartItems.map((item) => {
+            return {
+              id: item._id,
+              name: item.name,
+              quantity: item.quantity,
+              price: item.price,
+            };
+          })
+        ),
+      },
       line_items: cartItems.map((item) => {
         const img = item.imageUrls[0].url;
         return {
@@ -40,9 +53,7 @@ export const POST = async (req) => {
             unit_amount: item.price * 100,
           },
           adjustable_quantity: {
-            enabled: true,
-            minimum: 1,
-            maximum: item.stock,
+            enabled: false,
           },
           quantity: item.quantity,
         };
