@@ -59,8 +59,8 @@ export const POST = async (req) => {
         };
       }),
 
-      success_url: `${origin}/?success=true`,
-      cancel_url: `${origin}/?canceled=true`,
+      success_url: `${origin}/success`,
+      cancel_url: `${origin}/canceled`,
     };
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create(params);
