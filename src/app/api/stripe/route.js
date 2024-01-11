@@ -1,13 +1,16 @@
 import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const POST = async (req) => {
-  // return NextResponse.json(
-  //   { message: 'POST Hello from the API' },
-  //   { status: 200 }
-  // );
+  // Get the cart items from the request body. Need to parse the JSON body from the request.
+  const { cartItems } = await req.json();
+  const headersList = headers();
+  const origin = headersList.get('origin');
+  console.log('origin', origin);
+  console.log('cartItems in API', cartItems);
   try {
     const params = {
       submit_type: 'pay',
@@ -25,20 +28,32 @@ export const POST = async (req) => {
           shipping_rate: 'shr_1OXB5zEI54h92sklL6pMD9E5',
         },
       ],
-      line_items: [
-        {
-          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          price: '{{PRICE_ID}}',
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: `${req.headers.origin}/?success=true`,
-      cancel_url: `${req.headers.origin}/?canceled=true`,
+      line_items: cartItems.map((item) => {
+        const img = item.imageUrls[0].url;
+        return {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: item.name,
+              images: [img],
+            },
+            unit_amount: item.price * 100,
+          },
+          adjustable_quantity: {
+            enabled: true,
+            minimum: 1,
+            maximum: item.stock,
+          },
+          quantity: item.quantity,
+        };
+      }),
+
+      success_url: `${origin}/?success=true`,
+      cancel_url: `${origin}/?canceled=true`,
     };
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create(params);
-    res.redirect(303, session.url);
+    return NextResponse.json(session, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error.message }, { status: 500 });
