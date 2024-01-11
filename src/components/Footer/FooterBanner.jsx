@@ -17,22 +17,26 @@ const FooterBanner = ({
 }) => {
   return (
     <div className="footer-banner-container">
-      <div className="banner-desc">
-        <div className="left">
+      <div className="banner-grid">
+        <div className="grid__item left">
           <p>{discount}</p>
           <h3>{largeText1}</h3>
           <h3>{largeText2}</h3>
           <p>{saleTime}</p>
         </div>
-        <div className="right">
+        <div className="grid__item center">
+          <img src={imageUrls.url} alt="" className="footer-banner-image" />
+        </div>
+        <div className="grid__item right">
           <p>{smallText}</p>
           <h3>{midText}</h3>
           <p>{description}</p>
-          <Link href={`/product/${product.slug.current}`}>
-            <button type="button">{buttonText}</button>
-          </Link>
+          <div className="flex-item">
+            <Link href={`/product/${product.slug.current}`}>
+              <button type="button">{buttonText}</button>
+            </Link>
+          </div>
         </div>
-        <img src={imageUrls.url} alt="" className="footer-banner-image" />
       </div>
     </div>
   );
