@@ -1,15 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
 
-import { getAssets } from '../lib/client';
+import { getAssets } from '@/lib/client';
 
-import {
-  Product,
-  Products,
-  Footer,
-  FooterBanner,
-  HeroBanner,
-} from '../components';
+import { Product, FooterBanner, HeroBanner } from '@/components';
 
 const Home = async () => {
   const { products, categories, banners } = await getAssets();
@@ -18,8 +11,19 @@ const Home = async () => {
     <>
       <HeroBanner heroBanner={banners.length && banners[0]} />
       <div className="products-heading">
-        <h2>Best Selling Products</h2>
-        <p>Speakers of many variations</p>
+        <h2>
+          <span className="text-primary">Gear</span> I'm Selling
+        </h2>
+        <p>All items listed are currently available for purchase. </p>
+      </div>
+      <div className="categories-container">
+        {['Cameras', 'Lighting', 'Audio', 'Photo', 'Video', 'All'].map(
+          (category, index) => (
+            <div className="category" key={index}>
+              {category}
+            </div>
+          )
+        )}
       </div>
       <div className="products-container">
         {products.map((product) => (
