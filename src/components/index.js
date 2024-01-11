@@ -14,3 +14,4 @@ export { default as ProductQuantity } from './Product/ProductQuantity';
 export { default as ProductButtons } from './Product/ProductButtons';
 export { default as ProductDetails } from './Product/ProductDetails';
 export { default as ProductMarquee } from './Product/ProductMarquee';
+export { default as OrderComplete } from './OrderComplete';
