@@ -2,7 +2,13 @@ import React from 'react';
 
 import { getAssets } from '@/lib/client';
 
-import { Product, FooterBanner, HeroBanner } from '@/components';
+import {
+  Product,
+  FooterBanner,
+  HeroBanner,
+  CategoryFilter,
+  FilteredProducts,
+} from '@/components';
 
 const Home = async () => {
   const { products, categories, banners } = await getAssets();
@@ -16,20 +22,8 @@ const Home = async () => {
         </h2>
         <p>All items listed are currently available for purchase. </p>
       </div>
-      <div className="categories-container">
-        {['Cameras', 'Lighting', 'Audio', 'Photo', 'Video', 'All'].map(
-          (category, index) => (
-            <div className="category" key={index}>
-              {category}
-            </div>
-          )
-        )}
-      </div>
-      <div className="products-container">
-        {products.map((product) => (
-          <Product key={product._id} product={product} />
-        ))}
-      </div>
+      <CategoryFilter categories={categories} products={products} />
+      <FilteredProducts products={products} />
       {/* <div className="products-container">
         <Products />
       </div> */}
