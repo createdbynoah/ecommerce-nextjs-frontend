@@ -15,7 +15,7 @@ const Footer = () => {
             <Image
               src={NextBadge}
               alt="NextJS badge logo"
-              class="footer-logo next-js"
+              className="footer-logo next-js"
               height={24}
             />
           </a>
@@ -23,7 +23,12 @@ const Footer = () => {
         {' + '}
         <span>
           <a href="https://www.sanity.io/" target="_blank">
-            <Image src={SanityBadge} height={18} class="footer-logo sanity" />
+            <Image
+              src={SanityBadge}
+              alt="Sanity badge logo"
+              height={18}
+              className="footer-logo sanity"
+            />
           </a>
         </span>
         by{' '}
