@@ -6,7 +6,6 @@ import {
   TbShoppingBagCheck,
   TbShoppingBagX,
 } from 'react-icons/tb';
-import { LuTrash2 } from 'react-icons/lu';
 
 import { useStateContext } from '@/context/StateContext';
 
@@ -14,7 +13,8 @@ const Product = ({ product }) => {
   const { onAddToCart, cartItems, onRemoveFromCart } = useStateContext();
   const [isHovered, setIsHovered] = useState(false);
 
-  const { imageUrls, name, slug, price } = product;
+  const { imageUrls, name, slug, price, condition, outOfStock, stock } =
+    product;
 
   const handleAddToCart = (product) => {
     if (cartItems.find((item) => item._id === product._id)) {
@@ -26,7 +26,7 @@ const Product = ({ product }) => {
 
   return (
     <div>
-      <div className="product-card">
+      <div className={`product-card ${outOfStock && 'out-of-stock'}`}>
         <Link href={`/product/${slug.current}`}>
           <div className="row image-container">
             <img
@@ -36,40 +36,58 @@ const Product = ({ product }) => {
               height={250}
               className="product-image"
             />
+            <div
+              className={`condition ${
+                condition ? condition.class : 'no-condition'
+              }`}
+            >
+              <span>{condition ? condition.title : 'Used'}</span>
+            </div>
           </div>
         </Link>
         <div className="row">
           <Link href={`/product/${slug.current}`}>
             <div className="col">
               <p className="product-name ">{name}</p>
-              <p className="product-price">${price}</p>
+              <div className="price-quantity">
+                <span className="product-price">${price}</span>
+                {stock > 0 && (
+                  <span className="product-stock">({stock} available)</span>
+                )}
+              </div>
             </div>
           </Link>
-          <div
-            className={`col btn-add ${
-              cartItems.find((item) => item._id === product._id)
-                ? isHovered
-                  ? 'hovered'
-                  : 'added'
-                : 'not-added'
-            }`}
-          >
-            <button
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={() => handleAddToCart(product)}
+          {!outOfStock && (
+            <div
+              className={`col btn-add ${
+                cartItems.find((item) => item._id === product._id)
+                  ? isHovered
+                    ? 'hovered'
+                    : 'added'
+                  : 'not-added'
+              }`}
             >
-              {cartItems.find((item) => item._id === product._id) ? (
-                isHovered ? (
-                  <TbShoppingBagX />
+              <button
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={() => handleAddToCart(product)}
+                type="button"
+              >
+                {cartItems.find((item) => item._id === product._id) ? (
+                  isHovered ? (
+                    <TbShoppingBagX />
+                  ) : (
+                    <TbShoppingBagCheck />
+                  )
                 ) : (
-                  <TbShoppingBagCheck />
-                )
-              ) : (
-                <TbShoppingBagPlus />
-              )}
-            </button>
-          </div>
+                  <TbShoppingBagPlus />
+                )}
+              </button>
+            </div>
+          )}
+          {outOfStock && (
+            <div className="col out-of-stock-text">Out of Stock</div>
+          )}
         </div>
       </div>
     </div>

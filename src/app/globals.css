@@ -117,6 +117,7 @@ span.text-red {
 }
 
 .product-card .row.image-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,6 +128,36 @@ span.text-red {
   overflow: hidden;
 }
 
+.product-card.out-of-stock {
+  opacity: 0.5;
+}
+
+.product-card .condition {
+  position: absolute;
+  bottom: -1px;
+  right: -2px;
+  padding: 0.7rem 1rem;
+  border-radius: 15px 0 0 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text);
+  background-color: var(--background-50);
+}
+
+.condition.fair {
+  color: var(--danger);
+}
+
+.condition.good {
+  color: var(--warning);
+}
+
+.condition.excellent,
+.condition.like-new {
+  color: var(--success);
+}
+
 .product-image {
   transform: scale(1, 1);
   transition: transform 0.6s ease-in-out;
@@ -134,6 +165,16 @@ span.text-red {
 
 .product-image:hover {
   transform: scale(1.1, 1.1) translateX(8px);
+}
+
+.out-of-stock-text {
+  color: var(--danger);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  text-align: right;
+  padding-right: 1rem;
+  cursor: not-allowed;
 }
 
 .product-card .row {
@@ -180,6 +221,14 @@ span.text-red {
   border: 2px solid var(--secondary);
   box-shadow: 0 5px 20px rgba(241, 243, 244, 0.2);
 }
+.price-quantity {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
 
 .product-name {
   font-weight: 400;
@@ -191,8 +240,15 @@ span.text-red {
 }
 .product-price {
   font-weight: 800;
-  margin-top: 6px;
+  /* margin-top: 6px; */
   color: var(--primary);
+}
+
+.product-stock {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--text-400);
+  /* margin-top: 1px; */
 }
 
 .hero-banner-container button,
@@ -809,6 +865,15 @@ span.text-red {
 }
 .text-primary {
   color: var(--primary);
+}
+
+.buttons button.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.buttons button.disabled:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 @media screen and (max-width: 800px) {
