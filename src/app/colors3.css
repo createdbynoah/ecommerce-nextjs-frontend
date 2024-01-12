@@ -1,6 +1,5 @@
 /* https://www.realtimecolors.com/?colors=f1f3f4-0d0f11-a6b7c4-3f5869-779cb6&fonts=Poppins-Poppins */
 
-/* GRADIENTS */
 :root {
   --linearPrimarySecondary: linear-gradient(#a6b7c4, #3f5869);
   --linearPrimaryAccent: linear-gradient(#a6b7c4, #779cb6);
@@ -8,6 +7,9 @@
   --radialPrimarySecondary: radial-gradient(#a6b7c4, #3f5869);
   --radialPrimaryAccent: radial-gradient(#a6b7c4, #779cb6);
   --radialSecondaryAccent: radial-gradient(#3f5869, #779cb6);
+  --success: #73b234;
+  --danger: #c91d1d;
+  --warning: #e8a530;
 }
 
 @media (prefers-color-scheme: light) {
