@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { AiOutlineShopping } from 'react-icons/ai';
+import { TbShoppingBag } from 'react-icons/tb';
 
 import { useStateContext } from '@/context/StateContext';
 import { Cart } from '@/components';
@@ -19,7 +19,7 @@ const Navbar = () => {
         className="cart-icon"
         onClick={() => setShowCart(true)}
       >
-        <AiOutlineShopping />
+        <TbShoppingBag />
         <span className="cart-item-qty">{totalItems}</span>
       </button>
       {showCart && <Cart />}
