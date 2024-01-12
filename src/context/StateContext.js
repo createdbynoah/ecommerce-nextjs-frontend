@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
+import { getProductsByCategory } from '@/lib/client';
+
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
@@ -10,11 +12,26 @@ export const StateContext = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [qty, setQty] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   let foundProduct;
   let index;
 
-  const onAddToCart = (product, qty) => {
+  const onFilterProducts = async (category, products) => {
+    if (category === 'All') {
+      setFilteredProducts(products);
+    } else {
+      const filteredProducts = await getProductsByCategory(category);
+      if (!filteredProducts) {
+        setFilteredProducts([]);
+      } else {
+        setFilteredProducts(filteredProducts);
+      }
+    }
+  };
+
+  const onAddToCart = (product, qty = 1) => {
     const exist = cartItems.find((item) => item._id === product._id);
     setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * qty);
     setTotalItems((prevTotalItems) => prevTotalItems + qty);
@@ -106,6 +123,11 @@ export const StateContext = ({ children }) => {
         qty,
         incQty,
         decQty,
+        filteredProducts,
+        setFilteredProducts,
+        onFilterProducts,
+        selectedCategory,
+        setSelectedCategory,
       }}
     >
       {children}

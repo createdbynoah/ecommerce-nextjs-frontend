@@ -29,9 +29,31 @@ const getAssets = async () => {
 };
 
 const getAllProducts = async () => {
-  const query = '*[_type == "product" && published == true]';
+  const query =
+    '*[_type == "product" && published == true]{ ..., "category": category-> } | order(name asc)';
   try {
     const initialProducts = await client.fetch(query);
+    const products = initialProducts.map((product) => {
+      return {
+        ...product,
+        imageUrls: product.images?.map((image) => {
+          return { url: urlFor(image).toString(), key: image._key };
+        }),
+      };
+    });
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getProductsByCategory = async (category) => {
+  console.log('category in getProductsByCategory', category);
+  const query = `*[_type == "categories" && name == "${category}"]{...,products[]->{...} | order(name asc)}`;
+  try {
+    const category = await client.fetch(query);
+    if (!category.length) return [];
+    const initialProducts = category[0].products;
     const products = initialProducts.map((product) => {
       return {
         ...product,
@@ -82,7 +104,7 @@ const getBanners = async () => {
 };
 
 const getCategories = async () => {
-  const query = '*[_type == "categories"]';
+  const query = '*[_type == "categories"]{ ..., product-> }';
   try {
     const categories = await client.fetch(query);
     return categories;
@@ -91,4 +113,11 @@ const getCategories = async () => {
   }
 };
 
-export { client, urlFor, getAssets, getProduct, getAllProducts };
+export {
+  client,
+  urlFor,
+  getAssets,
+  getProduct,
+  getAllProducts,
+  getProductsByCategory,
+};
