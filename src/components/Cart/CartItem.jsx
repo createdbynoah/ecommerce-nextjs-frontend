@@ -31,7 +31,7 @@ const CartItem = ({ item, changeItemQty, removeItemFromCart }) => {
             className="remove-item"
             onClick={() => removeItemFromCart(item)}
           >
-            <TiDeleteOutline />
+            Remove
           </button>
         </div>
       </div>
