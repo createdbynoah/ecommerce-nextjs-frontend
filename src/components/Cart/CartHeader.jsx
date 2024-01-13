@@ -3,11 +3,17 @@ import { AiOutlineLeft } from 'react-icons/ai';
 
 const CartHeader = ({ hideCart, totalItems }) => {
   return (
-    <button type="button" className="cart-heading" onClick={hideCart}>
-      <AiOutlineLeft />
-      <span className="heading">Your Cart</span>
-      <span className="cart-num-items">({totalItems})</span>
-    </button>
+    <div className="cart-header">
+      <button type="button" className="btn-back" onClick={hideCart}>
+        <AiOutlineLeft />
+        <span className="btn-back-text">Back</span>
+      </button>
+      <div className="cart-heading">
+        <h2>
+          Your Cart<span className="cart-count"> ({totalItems})</span>
+        </h2>
+      </div>
+    </div>
   );
 };
 
