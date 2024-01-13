@@ -60,7 +60,7 @@ export const POST = async (req) => {
       }),
 
       success_url: `${origin}/success`,
-      cancel_url: `${origin}/canceled`,
+      cancel_url: `${origin}`,
     };
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create(params);
