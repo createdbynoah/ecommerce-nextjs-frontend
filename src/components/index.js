@@ -17,3 +17,4 @@ export { default as ProductDetails } from './Product/ProductDetails';
 export { default as ProductMarquee } from './Product/ProductMarquee';
 export { default as OrderComplete } from './OrderComplete';
 export { default as CategoryFilter } from './Categories/CategoryFilter';
+export { default as QuantityButtons } from './QuantityButtons';
