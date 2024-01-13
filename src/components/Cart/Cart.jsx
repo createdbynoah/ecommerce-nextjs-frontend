@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { toast } from 'react-hot-toast';
 
@@ -8,11 +8,12 @@ import { CartFooter, CartHeader, CartItems, EmptyCart } from '@/components';
 import getStripe from '@/lib/stripeClient';
 
 const Cart = () => {
-  const cartRef = useRef();
+  const [isTosChecked, setIsTosChecked] = useState(false); // [1
   const {
     totalItems,
     totalPrice,
     cartItems,
+    showCart,
     setShowCart,
     toggleCartItemQty,
     onRemoveFromCart,
@@ -42,8 +43,8 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-wrapper" ref={cartRef}>
-      <div className="cart-container">
+    <div className="cart-wrapper">
+      <div className={`cart-container ${showCart ? 'show' : ''}`}>
         <CartHeader
           hideCart={() => setShowCart(false)}
           totalItems={totalItems}
@@ -60,8 +61,9 @@ const Cart = () => {
             />
             <CartFooter
               totalPrice={totalPrice}
-              cartRef={cartRef}
               handleCheckout={handleCheckout}
+              isTosChecked={isTosChecked}
+              handleTosChecked={() => setIsTosChecked(!isTosChecked)}
             />
           </>
         )}
