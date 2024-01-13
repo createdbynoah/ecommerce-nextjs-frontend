@@ -391,10 +391,10 @@ span.text-red {
 }
 .categories-container .category {
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
   border: none;
-  color: var(--text);
+  color: var(--text-400);
   background-color: var(--secondary-100);
   /* background-color: #fff; */
   padding: 0.5rem 1rem;
