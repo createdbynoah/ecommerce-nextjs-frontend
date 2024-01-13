@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { TbShoppingBag } from 'react-icons/tb';
 
@@ -8,6 +8,36 @@ import { Cart } from '@/components';
 
 const Navbar = () => {
   const { totalItems, showCart, setShowCart } = useStateContext();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const nav = document.querySelector('nav');
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > 0) {
+        nav.classList.add('shadow');
+      } else {
+        nav.classList.remove('shadow');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const nav = document.querySelector('nav');
+    if (showCart) {
+      document.body.classList.add('no-scroll');
+      nav.classList.remove('shadow');
+    } else {
+      document.body.classList.remove('no-scroll');
+      if (window.scrollY > 0) {
+        nav.classList.add('shadow');
+      }
+    }
+  }, [showCart]);
 
   return (
     <div className="navbar-container">
