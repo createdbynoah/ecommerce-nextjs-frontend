@@ -32,7 +32,8 @@ const QuantityButtons = ({
 
   return (
     <div className="quantity-btns">
-      <span
+      <button
+        type="button"
         className={`minus ${quantity <= 1 ? 'disabled' : ''}`}
         onClick={handleDecreaseQty}
         onMouseEnter={() => setIsMinusHovered(true)}
@@ -43,9 +44,10 @@ const QuantityButtons = ({
         ) : (
           <AiOutlineMinusCircle />
         )}
-      </span>
+      </button>
       <span className="num">{quantity}</span>
-      <span
+      <button
+        type="button"
         className={`plus ${totalQty >= stock ? 'disabled' : ''}`}
         onClick={handleIncreaseQty}
         onMouseEnter={() => setIsAddHovered(true)}
@@ -56,7 +58,7 @@ const QuantityButtons = ({
         ) : (
           <AiOutlinePlusCircle />
         )}
-      </span>
+      </button>
     </div>
   );
 };
