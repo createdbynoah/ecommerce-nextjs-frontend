@@ -1,22 +1,30 @@
-'use client';
 import React from 'react';
+import { QuantityButtons } from '@/components';
 
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { useStateContext } from '@/context/StateContext';
-
-const ProductQuantity = ({ increaseQty, decreaseQty, quantity }) => {
+const ProductQuantity = ({
+  increaseQty,
+  decreaseQty,
+  quantity,
+  stock,
+  totalQty,
+}) => {
   return (
     <div className="quantity">
-      <h3>Quantity:</h3>
-      <p className="quantity-desc">
-        <span className="minus" onClick={decreaseQty}>
-          <AiOutlineMinus />
-        </span>
-        <span className="num">{quantity}</span>
-        <span className="plus" onClick={increaseQty}>
-          <AiOutlinePlus />
-        </span>
-      </p>
+      <div className="quantity-title">
+        <h3>Quantity:</h3>
+        <p>({stock} available)</p>
+      </div>
+      {!!stock ? (
+        <QuantityButtons
+          quantity={quantity}
+          stock={stock}
+          increaseQty={increaseQty}
+          decreaseQty={decreaseQty}
+          totalQty={totalQty}
+        />
+      ) : (
+        <p className="out-of-stock-text">Out of stock</p>
+      )}
     </div>
   );
 };
