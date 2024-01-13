@@ -8,7 +8,15 @@ import { ImageGallery, ProductButtons, ProductQuantity } from '@/components';
 import { useStateContext } from '@/context/StateContext';
 
 const ProductDetails = ({ product }) => {
-  const { name, description, price, imageUrls, stock, outOfStock } = product;
+  const {
+    name,
+    description,
+    price,
+    priceDisplay,
+    imageUrls,
+    stock,
+    outOfStock,
+  } = product;
   const { onAddToCart, qty, incQty, decQty, setShowCart, cartItems } =
     useStateContext();
 
@@ -40,7 +48,7 @@ const ProductDetails = ({ product }) => {
           </div>
           <h4>Details: </h4>
           <p>{description}</p>
-          <p className="price">${price}</p>
+          <p className="price">{priceDisplay}</p>
           <ProductQuantity
             increaseQty={incQty}
             decreaseQty={decQty}

@@ -37,3 +37,13 @@ export const celebrate = () => {
     startVelocity: 45,
   });
 };
+
+export const formatPrice = (price) => {
+  // add commas to price if it's over 1000, price is in dollars
+  const priceString = price.toString();
+  if (priceString.length > 3) {
+    return `$${priceString.slice(0, -3)},${priceString.slice(-3)}`;
+  } else {
+    return `$${priceString}`;
+  }
+};

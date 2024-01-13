@@ -6,11 +6,17 @@ const CartItem = ({ item, changeItemQty, removeItemFromCart }) => {
   const { quantity } = item;
   return (
     <div className="product" key={item._id}>
-      <img src={item?.imageUrls[0].url} alt="" className="cart-product-image" />
+      <div className="row">
+        <img
+          src={item?.imageUrls[0].url}
+          alt=""
+          className="cart-product-image"
+        />
+      </div>
       <div className="item-desc">
         <div className="flex top">
           <h5>{item.name}</h5>
-          <p className="price">${item.price}</p>
+          <p className="price">{item.priceDisplay}</p>
         </div>
         <div className="flex bottom">
           <QuantityButtons

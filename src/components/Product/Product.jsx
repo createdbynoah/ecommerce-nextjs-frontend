@@ -13,8 +13,16 @@ const Product = ({ product }) => {
   const { onAddToCart, cartItems, onRemoveFromCart } = useStateContext();
   const [isHovered, setIsHovered] = useState(false);
 
-  const { imageUrls, name, slug, price, condition, outOfStock, stock } =
-    product;
+  const {
+    imageUrls,
+    name,
+    slug,
+    price,
+    priceDisplay,
+    condition,
+    outOfStock,
+    stock,
+  } = product;
 
   const handleAddToCart = (product) => {
     if (cartItems.find((item) => item._id === product._id)) {
@@ -50,7 +58,7 @@ const Product = ({ product }) => {
             <div className="col">
               <p className="product-name ">{name}</p>
               <div className="price-quantity">
-                <span className="product-price">${price}</span>
+                <span className="price product-price">{priceDisplay}</span>
                 {stock > 0 && (
                   <span className="product-stock">({stock} available)</span>
                 )}

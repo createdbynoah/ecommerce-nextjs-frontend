@@ -1,6 +1,8 @@
 import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 
+import { formatPrice } from './utils';
+
 const options = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -36,6 +38,7 @@ const getAllProducts = async () => {
     const products = initialProducts.map((product) => {
       return {
         ...product,
+        priceDisplay: formatPrice(product.price),
         imageUrls: product.images?.map((image) => {
           return { url: urlFor(image).toString(), key: image._key };
         }),
@@ -57,6 +60,7 @@ const getProductsByCategory = async (category) => {
     const products = initialProducts.map((product) => {
       return {
         ...product,
+        priceDisplay: formatPrice(product.price),
         imageUrls: product.images?.map((image) => {
           return { url: urlFor(image).toString(), key: image._key };
         }),
@@ -74,6 +78,7 @@ const getProduct = async (slug) => {
     const initialProduct = await client.fetch(query);
     const product = {
       ...initialProduct,
+      priceDisplay: formatPrice(initialProduct.price),
       imageUrls: initialProduct.images?.map((image) => {
         return { url: urlFor(image).toString(), key: image._key };
       }),
