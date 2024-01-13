@@ -8,8 +8,14 @@ import { ImageGallery, ProductButtons, ProductQuantity } from '@/components';
 import { useStateContext } from '@/context/StateContext';
 
 const ProductDetails = ({ product }) => {
-  const { name, description, price, imageUrls } = product;
-  const { onAddToCart, qty, incQty, decQty, setShowCart } = useStateContext();
+  const { name, description, price, imageUrls, stock, outOfStock } = product;
+  const { onAddToCart, qty, incQty, decQty, setShowCart, cartItems } =
+    useStateContext();
+
+  const cartItem = cartItems.find((item) => item._id === product._id);
+  const totalQty = cartItem ? cartItem.quantity + qty : qty;
+
+  const isMaxQtyInCart = cartItem && cartItem.quantity >= stock;
 
   const handleBuyNow = () => {
     onAddToCart(product, qty);
@@ -36,17 +42,21 @@ const ProductDetails = ({ product }) => {
           <p>{description}</p>
           <p className="price">${price}</p>
           <ProductQuantity
-            product={product}
             increaseQty={incQty}
             decreaseQty={decQty}
             quantity={qty}
+            stock={stock}
+            totalQty={totalQty}
           />
-          <ProductButtons
-            product={product}
-            quantity={qty}
-            addToCart={onAddToCart}
-            handleBuyNow={handleBuyNow}
-          />
+          {!outOfStock && (
+            <ProductButtons
+              product={product}
+              quantity={qty}
+              addToCart={onAddToCart}
+              handleBuyNow={handleBuyNow}
+              isMaxQtyInCart={isMaxQtyInCart}
+            />
+          )}
         </div>
       </div>
     </>
