@@ -1,9 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import NextBadge from '../../../public/nextjs.svg';
+import NextBadge from '../../../public/nextjs-gray.svg';
 import SanityBadge from '../../../public/sanity.svg';
-import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 
 const Footer = () => {
   return (
