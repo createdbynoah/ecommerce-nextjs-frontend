@@ -10,6 +10,10 @@
   --success: #73b234;
   --danger: #c91d1d;
   --warning: #e8a530;
+  --rating-fair: #fb8c00;
+  --rating-good: #fbc02d;
+  --rating-like-new: hsl(65, 64%, 55%);
+  --rating-excellent: #43a047;
 }
 
 @media (prefers-color-scheme: light) {
