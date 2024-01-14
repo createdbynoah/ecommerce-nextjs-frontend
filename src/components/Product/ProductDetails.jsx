@@ -1,7 +1,9 @@
 'use client';
 import React from 'react';
+import { Tooltip, Fade, useMediaQuery } from '@mui/material';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { IoMdInformationCircle } from 'react-icons/io';
 
 import { ImageGallery, ProductButtons, ProductQuantity } from '@/components';
 
@@ -11,7 +13,7 @@ const ProductDetails = ({ product }) => {
   const {
     name,
     description,
-    price,
+    condition,
     priceDisplay,
     imageUrls,
     stock,
@@ -19,6 +21,8 @@ const ProductDetails = ({ product }) => {
   } = product;
   const { onAddToCart, qty, incQty, decQty, setShowCart, cartItems } =
     useStateContext();
+
+  const isMobile = useMediaQuery('(max-width: 800px)');
 
   const cartItem = cartItems.find((item) => item._id === product._id);
   const totalQty = cartItem ? cartItem.quantity + qty : qty;
@@ -36,15 +40,32 @@ const ProductDetails = ({ product }) => {
         <ImageGallery images={imageUrls} />
         <div className="product-detail-desc">
           <h1>{name}</h1>
-          <div className="reviews">
-            <div>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
+          <div className="condition">
+            <div className={`rating ${condition.class}`}>
+              {[...Array(4)].map((_, i) =>
+                i < condition.rating ? (
+                  <AiFillStar key={i} />
+                ) : (
+                  <AiOutlineStar key={i} />
+                )
+              )}
             </div>
-            <p>(20)</p>
+            <p className="separator">—</p>
+            <p>{condition.title}</p>
+            <Tooltip
+              arrow
+              TransitionComponent={Fade}
+              enterTouchDelay={50}
+              enterDelay={350}
+              leaveDelay={100}
+              leaveTouchDelay={1000}
+              title={condition.description}
+              placement={isMobile ? 'top' : 'right'}
+            >
+              <span className="tooltip-icon">
+                <IoMdInformationCircle />
+              </span>
+            </Tooltip>
           </div>
           <h4>Details: </h4>
           <p>{description}</p>
