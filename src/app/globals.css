@@ -15,6 +15,11 @@ body {
   background-color: var(--background-50);
   padding-top: 2rem;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 .no-scroll {
@@ -28,7 +33,7 @@ a {
 
 .main-container {
   max-width: 1400px;
-  margin: auto;
+
   width: 100%;
 }
 
@@ -1040,53 +1045,47 @@ span.text-red {
 }
 .success-wrapper,
 .cancel-wrapper {
-  background-color: white;
-  min-height: 60vh;
+  min-height: 100%;
 }
-.success,
-.cancel {
+.success {
   width: 1000px;
   margin: auto;
   margin-top: 160px;
-  background-color: hsl(0, 0%, 92%);
+  background-color: var(--background-100);
   padding: 50px;
   border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 20px;
 }
 
 .success .icon {
-  color: green;
-  font-size: 40px;
+  color: var(--success);
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
 }
 .success h2 {
   text-transform: capitalize;
-  margin-top: 15px 0px;
   font-weight: 900;
-  font-size: 40px;
-  color: #324d67;
+  font-size: 2.5rem;
+  color: var(--primary);
 }
-.success .email-msg {
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-}
-.cancel p {
-  font-size: 20px;
-  font-weight: 600;
-}
+
 .success .description {
-  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
   font-weight: 600;
   text-align: center;
-  margin: 10px;
-  margin-top: 30px;
+  color: var(--text);
 }
 .success .description .email {
   margin-left: 5px;
-  color: #4e6ae9;
+  color: var(--secondary-500);
 }
 .product-max-qty {
   margin-top: 10px;

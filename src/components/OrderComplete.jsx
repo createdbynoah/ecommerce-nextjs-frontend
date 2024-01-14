@@ -24,13 +24,15 @@ const OrderComplete = () => {
           <BsBagCheckFill />
         </p>
         <h2>Thank you for your order!</h2>
-        <p className="email-msg">Check your email inbox for your receipt.</p>
-        <p className="description">
-          If you have any questions, please email{' '}
-          <a className="email" href="mailto:order@example.com">
-            order@example.com
-          </a>
-        </p>
+        <div className="description">
+          <p className="email-msg">Check your email inbox for your receipt.</p>
+          <p>
+            If you have any questions, please email{' '}
+            <a className="email" href="mailto:order@example.com">
+              order@example.com
+            </a>
+          </p>
+        </div>
         <Link href="/">
           <button type="button" width="300px" className="btn">
             Continue Shopping
