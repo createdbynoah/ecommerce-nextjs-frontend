@@ -41,9 +41,15 @@ const Navbar = () => {
 
   return (
     <div className="navbar-container">
-      <p className="logo">
-        <Link href="/">BuyMyGear.</Link>
-      </p>
+      <div className="nav">
+        <p className="logo">
+          <Link href="/">BuyMyGear.</Link>
+        </p>
+        <div className="nav-links">
+          <Link href="/products">All Products</Link>
+          <Link href="/faq">FAQ</Link>
+        </div>
+      </div>
       <button
         type="button"
         className="cart-icon"
