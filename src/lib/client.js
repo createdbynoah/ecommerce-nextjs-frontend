@@ -125,4 +125,6 @@ export {
   getProduct,
   getAllProducts,
   getProductsByCategory,
+  getBanners,
+  getCategories,
 };

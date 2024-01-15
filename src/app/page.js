@@ -23,7 +23,7 @@ const Home = async () => {
         <p>All items listed are currently available for purchase. </p>
       </div>
       <CategoryFilter categories={categories} products={products} />
-      <FilteredProducts products={products} />
+      <FilteredProducts products={products} className={'products-container'} />
       <FooterBanner footerBanner={banners && banners[0]} />
     </>
   );

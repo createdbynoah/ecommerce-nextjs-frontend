@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Product } from '@/components';
 import { useStateContext } from '@/context/StateContext';
 
-const FilteredProducts = ({ products }) => {
+const FilteredProducts = ({ products, className }) => {
   const { filteredProducts, setFilteredProducts } = useStateContext();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const FilteredProducts = ({ products }) => {
   }, [products]);
 
   return (
-    <div className="products-container">
+    <div className={className}>
       {console.log('filteredProducts', filteredProducts)}
       {filteredProducts.length !== 0 &&
         filteredProducts.map((product) => (
