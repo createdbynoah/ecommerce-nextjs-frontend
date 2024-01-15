@@ -1,0 +1,38 @@
+.quantity-btns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 140px;
+  min-width: 120px;
+  justify-items: center;
+}
+.quantity-btns button {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+.quantity-btns button.disabled:hover {
+  cursor: default;
+}
+.quantity-btns .minus,
+.quantity-btns .plus {
+  margin: 0;
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.quantity-btns .minus {
+  color: var(--secondary);
+}
+.quantity-btns .num {
+  color: var(--text);
+  font-size: 2rem;
+  font-weight: 600;
+  user-select: none;
+}
+.quantity-btns .plus {
+  color: var(--secondary);
+}

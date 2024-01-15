@@ -1,0 +1,29 @@
+/* LAYOUT */
+.categories-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 2rem;
+  justify-content: center;
+  max-width: 100%;
+}
+.categories-container .category {
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  color: var(--text-400);
+  background-color: var(--secondary-100);
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+  transition: all 0.3s ease;
+}
+.categories-container .category:hover {
+  background-color: var(--primary);
+  color: var(--background);
+}
+.category.active {
+  background-color: var(--primary);
+  color: var(--background);
+}

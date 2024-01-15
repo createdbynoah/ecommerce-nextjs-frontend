@@ -129,6 +129,7 @@
     --text-950: #f1f3f4;
 
     --background-50: #0b0d0e;
+    --background-50-opaque: rgb(11, 13, 14, 0.85);
     --background-100: #16191d;
     --background-200: #2c333a;
     --background-300: #434c56;
