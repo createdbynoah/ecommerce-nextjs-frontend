@@ -18,8 +18,6 @@ const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
 const getAssets = async () => {
-  console.log('here');
-
   try {
     const products = await getAllProducts();
     const categories = await getCategories();
@@ -51,7 +49,6 @@ const getAllProducts = async () => {
 };
 
 const getProductsByCategory = async (category) => {
-  console.log('category in getProductsByCategory', category);
   const query = `*[_type == "categories" && name == "${category}"]{...,products[]->{...} | order(name asc)}`;
   try {
     const category = await client.fetch(query);
