@@ -55,6 +55,7 @@ const Navbar = () => {
               src={isDark ? BuyMyGearDark : BuyMyGearLight}
               height={isMobile ? 22 : 28}
               alt="Buy My Gear Logo"
+              priority={true}
             ></Image>
           </Link>
         </p>
