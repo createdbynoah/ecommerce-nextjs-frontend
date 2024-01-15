@@ -24,9 +24,6 @@ const Home = async () => {
       </div>
       <CategoryFilter categories={categories} products={products} />
       <FilteredProducts products={products} />
-      {/* <div className="products-container">
-        <Products />
-      </div> */}
       <FooterBanner footerBanner={banners && banners[0]} />
     </>
   );

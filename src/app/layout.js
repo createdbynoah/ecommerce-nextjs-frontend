@@ -24,6 +24,10 @@ export default function RootLayout({ children }) {
       <meta charSet="utf-8" />
       <title>{metadata.title}</title>
       <meta name="description" content={metadata.description} />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      ></meta>
       <link rel="icon" href="/favicon.ico" />
       {/* </Head> */}
 
