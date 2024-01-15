@@ -146,13 +146,14 @@ a {
     width: 100%;
   }
 
-  .main-container {
+  /* .main-container {
     padding: 0 1rem;
-  }
+  } */
 
   .products-container {
     gap: 20px;
     margin: 0;
+    padding: 0 1rem;
   }
 
   .product {
