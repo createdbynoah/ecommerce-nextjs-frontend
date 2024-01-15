@@ -42,17 +42,21 @@ const Cart = () => {
     stripe.redirectToCheckout({ sessionId: data.id });
   };
 
+  const emptyCart = cartItems.length === 0;
+
   return (
     <div className="cart-wrapper">
-      <div className={`cart-container ${showCart ? 'show' : ''}`}>
+      <div
+        className={`cart-container ${showCart ? 'show' : ''} ${
+          emptyCart ? 'empty' : ''
+        }`}
+      >
         <CartHeader
           hideCart={() => setShowCart(false)}
           totalItems={totalItems}
         />
-        {cartItems.length === 0 && (
-          <EmptyCart hideCart={() => setShowCart(false)} />
-        )}
-        {cartItems.length !== 0 && (
+        {emptyCart && <EmptyCart hideCart={() => setShowCart(false)} />}
+        {!emptyCart && (
           <>
             <CartItems
               changeItemQty={toggleCartItemQty}
