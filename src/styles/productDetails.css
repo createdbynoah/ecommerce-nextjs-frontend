@@ -218,19 +218,22 @@
 }
 .maylike-products-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   overflow-x: auto;
   white-space: nowrap;
   gap: 25px;
   margin-top: 20px;
   width: 100%;
 }
+.maylike-products-container:first-child {
+  padding-left: 20px;
+}
 
 @media screen and (max-width: 800px) {
   .product-detail-container {
     flex-wrap: wrap;
     justify-content: center;
-    margin: 6rem 20px 0;
+    margin: 6rem 0 0;
   }
   .small-images-container {
     justify-content: center;
@@ -256,9 +259,5 @@
   .quantity {
     flex-direction: column;
     align-items: center;
-  }
-
-  .maylike-products-container {
-    justify-content: flex-start;
   }
 }
