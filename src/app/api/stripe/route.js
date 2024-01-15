@@ -64,6 +64,7 @@ export const POST = async (req) => {
     };
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create(params);
+    console.log('session', session);
     return NextResponse.json(session, { status: 200 });
   } catch (error) {
     console.log(error);
