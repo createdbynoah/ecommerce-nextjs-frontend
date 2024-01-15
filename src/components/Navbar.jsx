@@ -54,6 +54,7 @@ const Navbar = () => {
             <Image
               src={isDark ? BuyMyGearDark : BuyMyGearLight}
               height={isMobile ? 22 : 28}
+              alt="Buy My Gear Logo"
             ></Image>
           </Link>
         </p>
