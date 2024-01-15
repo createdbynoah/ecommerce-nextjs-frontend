@@ -20,6 +20,10 @@ body,
   width: 0px;
 }
 
+#buy-my path.cls-2 {
+  fill: var(--primary);
+}
+
 body {
   background-color: var(--background-50);
   padding-top: 2rem;
@@ -142,16 +146,8 @@ a {
     width: 100%;
   }
 
-  .product-detail-container {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .small-images-container {
-    justify-content: center;
-  }
-  .product-detail-container .product-detail-image {
-    width: 350px;
-    height: 350px;
+  .main-container {
+    padding: 0 1rem;
   }
 
   .products-container {
@@ -163,20 +159,6 @@ a {
     padding: 20px 5px;
   }
 
-  .buttons .add-to-cart {
-    width: 150px;
-  }
-  .buttons .buy-now {
-    width: 150px;
-  }
-  .product-detail-container {
-    margin: 20px;
-  }
-
-  .track {
-    animation: marquee 10s linear infinite;
-    width: 550%;
-  }
   .btn {
     margin: 0;
     width: 100%;

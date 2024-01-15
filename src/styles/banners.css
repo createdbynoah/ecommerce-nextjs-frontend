@@ -178,6 +178,7 @@
   /* HERO BANNER */
   .hero-banner-container {
     height: 100vh;
+    margin: 0;
   }
   .hero-banner-container .row {
     flex-direction: column;
