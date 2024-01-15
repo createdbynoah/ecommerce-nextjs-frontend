@@ -20,7 +20,7 @@ const CartFooter = ({
         <div className="subtotal">
           <div className="shipping">
             <h4>Shipping:</h4>
-            <p>(Shipping calculated at checkout)</p>
+            <p>(Calculated at checkout)</p>
           </div>
           <h4>TBD</h4>
         </div>

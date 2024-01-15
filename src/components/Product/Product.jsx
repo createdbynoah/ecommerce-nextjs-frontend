@@ -44,11 +44,7 @@ const Product = ({ product }) => {
               height={250}
               className="product-image"
             />
-            <div
-              className={`condition ${
-                condition ? condition.class : 'no-condition'
-              }`}
-            >
+            <div className={`condition ${condition ? condition.class : ''}`}>
               <span>{condition ? condition.title : 'Used'}</span>
             </div>
           </div>
