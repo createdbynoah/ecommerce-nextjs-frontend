@@ -28,9 +28,10 @@ nav.shadow {
 }
 
 /* LOGO */
+
 .logo {
-  color: var(--primary);
-  font-size: 18px;
+  position: relative;
+  top: 2px;
 }
 
 /* NAV LINKS */

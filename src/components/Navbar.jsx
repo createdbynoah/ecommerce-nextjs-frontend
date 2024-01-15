@@ -1,8 +1,12 @@
 'use client';
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { TbShoppingBag } from 'react-icons/tb';
+import { useMediaQuery } from '@mui/material';
 
+import BuyMyGearLight from '../../public/images/buymygear-light.svg';
+import BuyMyGearDark from '../../public/images/buymygear-dark.svg';
 import { useStateContext } from '@/context/StateContext';
 import { Cart } from '@/components';
 
@@ -39,11 +43,19 @@ const Navbar = () => {
     }
   }, [showCart]);
 
+  const isMobile = useMediaQuery('(max-width: 800px)');
+  const isDark = useMediaQuery('(prefers-color-scheme: dark)');
+
   return (
     <div className="navbar-container">
       <div className="nav">
         <p className="logo">
-          <Link href="/">BuyMyGear.</Link>
+          <Link href="/">
+            <Image
+              src={isDark ? BuyMyGearDark : BuyMyGearLight}
+              height={isMobile ? 22 : 28}
+            ></Image>
+          </Link>
         </p>
         <div className="nav-links">
           <Link href="/products">All Products</Link>
