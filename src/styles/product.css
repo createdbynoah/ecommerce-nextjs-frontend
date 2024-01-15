@@ -148,3 +148,12 @@
   border: 2px solid var(--secondary);
   box-shadow: 0 5px 20px rgba(241, 243, 244, 0.2);
 }
+
+@media screen and (max-width: 900px) {
+  .product-card {
+    width: 225px;
+  }
+  .product-name {
+    width: 160px;
+  }
+}

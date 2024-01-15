@@ -14,7 +14,7 @@ const ProductButtons = ({
     <div className="buttons">
       <button
         type="button"
-        className={`add-to-cart ${isDisabled ? 'disabled' : ''}`}
+        className={`btn add-to-cart ${isDisabled ? 'disabled' : ''}`}
         onClick={() => addToCart(product, quantity)}
         disabled={isDisabled}
       >
@@ -26,7 +26,7 @@ const ProductButtons = ({
       </button>
       <button
         type="button"
-        className={`buy-now ${isDisabled ? 'disabled' : ''}`}
+        className={`btn buy-now ${isDisabled ? 'disabled' : ''}`}
         onClick={handleBuyNow}
         disabled={isDisabled}
       >

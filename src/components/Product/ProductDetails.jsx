@@ -69,14 +69,17 @@ const ProductDetails = ({ product }) => {
           </div>
           <h4>Details: </h4>
           <p>{description}</p>
-          <p className="price">{priceDisplay}</p>
-          <ProductQuantity
-            increaseQty={incQty}
-            decreaseQty={decQty}
-            quantity={qty}
-            stock={stock}
-            totalQty={totalQty}
-          />
+          <div className="price-details-container">
+            <p className="price">{priceDisplay}</p>
+            <ProductQuantity
+              increaseQty={incQty}
+              decreaseQty={decQty}
+              quantity={qty}
+              stock={stock}
+              totalQty={totalQty}
+            />
+          </div>
+
           {!outOfStock && (
             <ProductButtons
               product={product}

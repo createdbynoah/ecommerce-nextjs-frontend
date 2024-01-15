@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 import Link from 'next/link';
 import {
   TbShoppingBagPlus,
@@ -24,6 +25,8 @@ const Product = ({ product }) => {
     stock,
   } = product;
 
+  const isMobile = useMediaQuery('(max-width: 900px)');
+
   const handleAddToCart = (product) => {
     if (cartItems.find((item) => item._id === product._id)) {
       onRemoveFromCart(product);
@@ -33,15 +36,15 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div>
-      <div className={`product-card ${outOfStock && 'out-of-stock'}`}>
+    <>
+      <div className={`product-card ${outOfStock ? 'out-of-stock' : ''}`}>
         <Link href={`/product/${slug.current}`}>
           <div className="row image-container">
             <img
               src={imageUrls && imageUrls.length !== 0 && imageUrls[0].url}
               alt={name}
-              width={250}
-              height={250}
+              width={isMobile ? 200 : 250}
+              height={isMobile ? 200 : 250}
               className="product-image"
             />
             <div className={`condition ${condition ? condition.class : ''}`}>
@@ -94,7 +97,7 @@ const Product = ({ product }) => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
