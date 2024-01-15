@@ -116,21 +116,30 @@
 }
 .banner-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-areas:
+    'a b c'
+    'a b c'
+    'a b c';
   gap: 20px;
   height: 100%;
 }
 .banner-grid .grid__item {
   max-height: 350px;
 }
-.banner-grid .left {
+.banner-grid .a {
+  grid-area: a;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
-.banner-grid .right {
+.banner-grid .b {
+  grid-area: b;
+}
+.banner-grid .c {
+  grid-area: c;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -143,12 +152,12 @@
   color: var(--text);
   margin-top: 20px;
 }
-.banner-grid .left h3 {
+.banner-grid .a h3 {
   font-weight: 900;
   font-size: 80px;
   margin-left: 25px;
 }
-.banner-grid .left p {
+.banner-grid .a p {
   margin: 18px;
   color: var(--secondary);
 }
@@ -159,14 +168,14 @@
   margin-top: -20%;
   width: auto;
 }
-.banner-grid .right h3 {
+.banner-grid .c h3 {
   font-weight: 800;
   font-size: 60px;
 }
-.banner-grid .right p {
+.banner-grid .c p {
   font-size: 18px;
 }
-.banner-grid .right .flex-item {
+.banner-grid .c .flex-item {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -218,30 +227,63 @@
     height: 500px;
     width: 100%;
   }
+  .footer-banner-image {
+    position: relative;
+    /* height: 40vw; */
+    max-height: 500px;
+    /* margin-top: -20%; */
+    width: auto;
+  }
   .banner-grid {
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
+    grid-template-areas:
+      'a b b'
+      'a b b'
+      'c c c';
     gap: 20px;
+    height: 100%;
   }
   .banner-grid .grid__item {
-    max-width: 100%;
+    height: 100%;
+    max-height: none;
   }
-  .banner-grid .left h3 {
+  .banner-grid .a {
+    grid-area: a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .banner-grid .b {
+    grid-area: c;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+  }
+  .banner-grid .c {
+    grid-area: b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  .banner-grid .a h3 {
     font-weight: 900;
     font-size: 50px;
     margin-left: 5px;
   }
-  .banner-grid .left p {
+  .banner-grid .a p {
     margin: 18px;
   }
-  .banner-grid .right h3 {
+  .banner-grid .c h3 {
     font-size: 45px;
   }
-  .banner-grid .right p {
+  .banner-grid .c p {
     font-size: 18px;
-  }
-  .banner-grid {
-    flex-wrap: wrap;
-    gap: 20px;
   }
 }

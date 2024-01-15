@@ -1,5 +1,7 @@
+'use client';
 import React from 'react';
 import Link from 'next/link';
+import { useMediaQuery } from '@mui/material';
 
 const FooterBanner = ({
   footerBanner: {
@@ -15,27 +17,42 @@ const FooterBanner = ({
     imageUrls,
   },
 }) => {
+  const isMobile = useMediaQuery('(max-width: 800px)');
   return (
     <div className="footer-banner-container">
       <div className="banner-grid">
-        <div className="grid__item left">
+        <div className="grid__item a">
           <p>{discount}</p>
-          <h3>{largeText1}</h3>
-          <h3>{largeText2}</h3>
+          <div className="heading-text">
+            <h3>{largeText1}</h3>
+            <h3>{largeText2}</h3>
+          </div>
           <p>{saleTime}</p>
         </div>
-        <div className="grid__item center">
-          <img src={imageUrls.url} alt="" className="footer-banner-image" />
+
+        <div className="grid__item b">
+          {!isMobile && (
+            <img src={imageUrls.url} alt="" className="footer-banner-image" />
+          )}
+          {isMobile && (
+            <div className="flex-item">
+              <Link href={`/product/${product.slug.current}`}>
+                <button type="button">{buttonText}</button>
+              </Link>
+            </div>
+          )}
         </div>
-        <div className="grid__item right">
+        <div className="grid__item c">
           <p>{smallText}</p>
           <h3>{midText}</h3>
           <p>{description}</p>
-          <div className="flex-item">
-            <Link href={`/product/${product.slug.current}`}>
-              <button type="button">{buttonText}</button>
-            </Link>
-          </div>
+          {!isMobile && (
+            <div className="flex-item">
+              <Link href={`/product/${product.slug.current}`}>
+                <button type="button">{buttonText}</button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
