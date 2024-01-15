@@ -13,7 +13,6 @@ const FilteredProducts = ({ products, className }) => {
 
   return (
     <div className={className}>
-      {console.log('filteredProducts', filteredProducts)}
       {filteredProducts.length !== 0 &&
         filteredProducts.map((product) => (
           <Product key={product._id} product={product} />
