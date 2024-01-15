@@ -48,7 +48,7 @@ const FooterBanner = ({
           <p>{description}</p>
           {!isMobile && (
             <div className="flex-item">
-              <Link href={`/product/${product.slug.current}`}>
+              <Link href="/products">
                 <button type="button">{buttonText}</button>
               </Link>
             </div>
