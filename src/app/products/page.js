@@ -12,7 +12,7 @@ const ProductPage = async () => {
     <>
       <div className="products-heading">
         <h2>
-          <span className="text-primary">Everything</span> I'm Selling
+          <span className="text-primary">Everything</span> I&apos;m Selling
         </h2>
         <p>All items listed are currently available for purchase. </p>
       </div>

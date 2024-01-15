@@ -18,7 +18,7 @@ const Home = async () => {
       <HeroBanner heroBanner={banners.length && banners[0]} />
       <div className="products-heading">
         <h2>
-          <span className="text-primary">Gear</span> I'm Selling
+          <span className="text-primary">Gear</span> I&apos;m Selling
         </h2>
         <p>All items listed are currently available for purchase. </p>
       </div>
